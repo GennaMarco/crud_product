@@ -16,3 +16,4 @@ AppBundle\Entity\Category:
         products:
             targetEntity: Product
             mappedBy: category
+            cascade: 'all'
