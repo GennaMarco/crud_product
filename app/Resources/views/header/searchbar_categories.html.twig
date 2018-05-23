@@ -1,0 +1,5 @@
+{{ form_start(search_form) }}
+    {{ form_widget(search_form.search, {'attr': { 'class': 'input search-input' }}) }}
+    {{ form_widget(search_form.category, {'attr': { 'class': 'input search-categories' }}) }}
+    <button type="submit" class="search-btn"><i class="fa fa-search"></i></button>
+{{ form_end(search_form) }}

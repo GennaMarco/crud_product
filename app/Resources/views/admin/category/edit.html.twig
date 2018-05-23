@@ -1,0 +1,39 @@
+{% extends 'admin.html.twig' %}
+
+{% block body %}
+    <div class="content container">
+        <div class="row">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">
+                <div class="box box-info">
+                    <div class="box-header with-border text-center">
+                        <h3 class="box-title">Edit Category</h3>
+                        {{ form_start(delete_form) }}
+                            <button type="submit" class="btn btn-danger pull-right" onclick="return confirm('Are you sure you want to delete this category?')"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+                        {{ form_end(delete_form) }}
+                    </div>
+                    <!-- /.box-header -->
+                    <!-- form start -->
+                    {{ form_start(edit_form, { 'attr' : { 'class': 'form-horizontal' } }) }}
+                        <div class="box-body">
+                            <div class="form-group">
+                                {{ form_label(edit_form.name, null, { 'label_attr' : { 'class': 'col-sm-2 control-label' } }) }}
+                                {{ form_errors(edit_form.name) }}
+                                <div class="col-sm-10">
+                                    {{ form_widget(edit_form.name, {'attr': { 'class': 'form-control' }}) }}
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.box-body -->
+                        <div class="box-footer">
+                            <a href="{{ url('admin_category_index') }}" class="btn btn-default" role="button"><span class="glyphicon glyphicon-remove-circle"></span> Cancel</a>
+                            <button type="submit" class="btn btn-success pull-right"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+                        </div>
+                        <!-- /.box-footer -->
+                    {{ form_end(edit_form) }}
+                </div>
+            </div>
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+{% endblock %}

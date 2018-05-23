@@ -1,0 +1,40 @@
+AppBundle\Entity\User:
+    type: entity
+    table: user
+    repositoryClass: AppBundle\Repository\UserRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        username:
+            type: string
+            length: 255
+            unique: true
+        email:
+            type: string
+            length: 255
+            unique: true
+        password:
+            type: string
+            length: 255
+        enabled:
+            type: boolean
+            nullable: true
+        role:
+            type: string
+            columnDefinition: ENUM('ROLE_USER', 'ROLE_ADMIN')
+            nullable: false
+        imagePath:
+            name: image_path
+            type: string
+            length: 255
+            nullable: false
+        createdAt:
+            type: datetime
+            nullable: false
+            gedmo:
+                timestampable:
+                    on: create

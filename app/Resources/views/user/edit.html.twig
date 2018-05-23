@@ -1,0 +1,75 @@
+{% extends 'base.html.twig' %}
+
+{% block breadcrumbs %}
+    <li class="active">Profile</li>
+{% endblock %}
+
+{% block body %}
+    <div class="container margin_top20px">
+        {{ form_start(delete_form) }}
+            <button type="submit" class="btn btn-flat btn-danger pull-right" onclick="return confirm('Are you sure you want to delete your Account?')"><span class="glyphicon glyphicon-trash"></span> Delete Account</button>
+        {{ form_end(delete_form) }}
+
+        {{ form_start(edit_form, { attr: {novalidate: 'novalidate'} }) }}
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+                        <div class="panel panel-info">
+                            <div class="panel-heading text-center">
+                                <h3 class="panel-title">Profile</h3>
+                            </div>
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-md-3 col-lg-3 " align="center">
+                                        <div class="image-upload">
+                                            <label for="user_imagePath" class="custom-file-upload">
+                                                {% if edit_form.vars.value.imagePath != user_default_img %}
+                                                    <a href="{{ url('app_user_delete_image_profile') }}" class="btn btn-danger btn-md" onclick="return confirm('Are you sure you want to remove your Image Profile?')"><span class="glyphicon glyphicon-remove"></span> Remove</a>
+                                                {% endif %}
+                                                <img style="width: 108px; height: 108px;" src="{{ asset(users_dir_profile ~ edit_form.vars.value.imagePath) }}" class="img-circle img-responsive">
+                                                <div id="name-of-file-uploaded"><i class="fas fa-upload"></i> Upload</div>
+                                            </label>
+                                            {{ form_widget(edit_form.imagePath) }}
+                                        </div>
+                                    </div>
+                                    <div class=" col-md-9 col-lg-9 ">
+                                        <table class="table table-user-information">
+                                            <tbody>
+                                            <tr>
+                                                {{ form_errors(edit_form.username) }}
+                                                <td><b>Username</b></td>
+                                                <td>{{ form_widget(edit_form.username) }}</td>
+                                            </tr>
+                                            <tr>
+                                                {{ form_errors(edit_form.email) }}
+                                                <td><b>Email</b></td>
+                                                <td>{{ form_widget(edit_form.email) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>New password</b></td>
+                                                <td>{{ form_widget(edit_form.plainPassword.first) }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td><b>Confirm new password</b></td>
+                                                <td>{{ form_widget(edit_form.plainPassword.second) }}</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="panel-footer">
+                                <span class="pull-right">
+                                    <a href="{{ url('app_user_index') }}" class="btn btn-primary" role="button"><span class="glyphicon glyphicon-remove-circle"></span> Cancels</a>
+                                    <button type="submit" class="btn btn-success"><span class="glyphicon glyphicon-floppy-disk"></span> Save</button>
+                               </span>
+                                <div style="clear: right;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {{ form_end(edit_form) }}
+    </div>
+{% endblock %}

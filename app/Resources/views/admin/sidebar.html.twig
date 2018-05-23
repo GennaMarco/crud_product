@@ -1,0 +1,22 @@
+<aside class="main-sidebar">
+    <section class="sidebar">
+        <ul class="sidebar-menu" data-widget="tree">
+            <li class="header">MAIN NAVIGATION</li>
+            <li class="{% if app.request.get('_route') in ['app_admin_dashboard'] %} active {% endif %}">
+                <a href="{{ url('app_admin_dashboard') }}">
+                    <i class="fa fa-dashboard"></i> <span>Dashboard</span>
+                </a>
+            </li>
+            <li class="{% if app.request.get('_route') in ['admin_category_index', 'admin_category_create', 'admin_category_edit'] %} active {% endif %}">
+                <a href="{{ url('admin_category_index') }}">
+                    <i class="fa fa-th"></i> <span>Categories</span>
+                </a>
+            </li>
+            <li class="{% if app.request.get('_route') in ['admin_product_index', 'admin_product_create', 'admin_product_edit'] %} active {% endif %}">
+                <a href="{{ url('admin_product_index') }}">
+                    <i class="fa fa-laptop"></i> <span>Products</span>
+                </a>
+            </li>
+        </ul>
+    </section>
+</aside>

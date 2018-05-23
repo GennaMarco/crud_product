@@ -1,0 +1,38 @@
+homepage:
+    path:     /
+    defaults: { _controller: 'AppBundle:Default:index' }
+
+app_registration_register:
+    path:     /register{trailingSlash}
+    defaults: { _controller: 'AppBundle:Registration:register', trailingSlash: / }
+    requirements: { trailingSlash: "[/]?" }
+
+app_admin_dashboard:
+    path:     /admin{trailingSlash}
+    defaults: { _controller: "AppBundle:Admin/Pages:dashboard", trailingSlash: /  }
+    requirements: { trailingSlash: "[/]?" }
+
+app_admin_product:
+    resource: "@AppBundle/Resources/config/routing/admin/product.yml"
+    prefix:   /admin/product
+
+app_admin_category:
+    resource: "@AppBundle/Resources/config/routing/admin/category.yml"
+    prefix:   /admin/category
+
+app_security:
+    resource: "@AppBundle/Resources/config/routing/security.yml"
+
+app_user:
+    resource: "@AppBundle/Resources/config/routing/user.yml"
+    prefix:   /user
+
+app_product:
+    resource: "@AppBundle/Resources/config/routing/product.yml"
+    prefix:   /product
+
+
+
+
+
+

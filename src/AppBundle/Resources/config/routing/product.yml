@@ -1,0 +1,16 @@
+app_product_index:
+    path:    /
+    defaults: { _controller: "AppBundle:Product:index" }
+    methods:  [GET]
+
+app_product_search:
+    path:    /search
+    defaults: { _controller: "AppBundle:Product:search" }
+    methods:  [GET, POST]
+
+app_product_view:
+    path:    /{product_name}
+    defaults: { _controller: "AppBundle:Product:view" }
+    methods:  [GET, POST]
+
+

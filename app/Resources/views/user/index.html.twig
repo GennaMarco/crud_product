@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block breadcrumbs %}
+    <li class="active">Profile</li>
+{% endblock %}
+
+{% block body %}
+    <div class="container margin_top20px">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xs-offset-0 col-sm-offset-0 col-md-offset-3 col-lg-offset-3 toppad" >
+                <div class="panel panel-info margin_top20px">
+                    <div class="panel-heading text-center">
+                        <h3 class="panel-title">Profile</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3 col-lg-3 " align="center">
+                                <img style="width: 108px; height: 108px;" src="{{ asset(users_dir_profile ~ user.imagePath ) }}" class="img-circle img-responsive">
+                            </div>
+                            <div class=" col-md-9 col-lg-9 ">
+                                <table class="table table-user-information">
+                                    <tbody>
+                                    <tr>
+                                        <td><b>Username</b></td>
+                                        <td>{{ user.username }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Hire date</b></td>
+                                        <td>{{ user.createdAt|date('d/m/Y') }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Email</b></td>
+                                        <td>{{ user.email }}</td>
+                                    </tr>
+                                    <tr>
+                                        <td><b>Role</b></td>
+                                        <td>{{ user.role|replace({'ROLE_': ''}) }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-footer">
+                            <span class="pull-right">
+                                 <a href="{{ path('app_user_edit') }}" class="btn btn-warning btn-md"><span class="glyphicon glyphicon-wrench"></span> Edit</a>
+                            </span>
+                        <div style="clear: right;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

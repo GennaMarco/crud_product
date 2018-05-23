@@ -1,0 +1,19 @@
+admin_category_index:
+    path:     /
+    defaults: { _controller: "AppBundle:Admin/Category:index" }
+    methods:  GET
+
+admin_category_create:
+    path:     /create
+    defaults: { _controller: "AppBundle:Admin/Category:create" }
+    methods:  [GET, POST]
+
+admin_category_edit:
+    path:     /edit/{category_id}
+    defaults: { _controller: "AppBundle:Admin/Category:edit" }
+    methods:  [GET, POST]
+
+admin_category_delete:
+    path:     /delete/{category_id}
+    defaults: { _controller: "AppBundle:Admin/Category:delete" }
+    methods:  DELETE

@@ -1,0 +1,29 @@
+AppBundle\Entity\Product:
+    type: entity
+    table: product
+    repositoryClass: AppBundle\Repository\ProductRepository
+    id:
+        id:
+            type: integer
+            id: true
+            generator:
+                strategy: AUTO
+    fields:
+        name:
+            type: string
+            length: 255
+        price:
+            type: decimal
+            scale: 2
+        description:
+            type: text
+        stockQuantity:
+            type: integer
+    manyToOne:
+        category:
+            targetEntity: Category
+            inversedBy: products
+            joinColumn:
+                name: category_id
+                referencedColumnName: id
+                nullable: false
