@@ -19,16 +19,18 @@ class ProductController extends Controller
 {
     public function indexAction(Request $request)
     {
-        $categoryName = $request->query->get('category');
+        $categorySlug = $request->query->get('category_slug');
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
 
-        if(empty($categoryName))
+        if(empty($categorySlug))
         {
             $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
         }
         else
         {
-            $products = $this->getDoctrine()->getRepository(Product::class)->findProductsByCategory($categoryName);
+            /** @var Category $category */
+            $category = $this->getDoctrine()->getRepository(Category::class)->findOneBy(['urlSlug' => $categorySlug]);
+            $products = $category->getProducts()->getValues();
         }
 
         return $this->render('product/index.html.twig',

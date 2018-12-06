@@ -3,7 +3,6 @@
 {% block breadcrumbs %}
 
     <li><a href="{{ url('app_product_index') }}">Products</a></li>
-    <li><a href="{{ url('app_product_index', {'category': product.category.name}) }}">{{ product.category.name }}</a></li>
     <li class="active">{{ product.name }}</li>
 
 {% endblock %}
@@ -63,7 +62,7 @@
                             </div>
                             <p><strong>Availability:</strong> {% if product.stockQuantity > 0 %} {{ product.stockQuantity }} In Stock {% else %} not available  {% endif %}
                             </p>
-                            <p><strong>Brand:</strong> {{ product.category.name }}</p>
+                            <p><strong>Brand:</strong> BrandName</p>
                             <p>{{ product.description|raw }}</p>
                             <div class="product-btns">
                                 <div class="qty-input">

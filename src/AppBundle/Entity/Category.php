@@ -68,6 +68,7 @@ class Category
     public function setName($name)
     {
         $this->name = $name;
+        $this->generateUrlSlug();
     }
 
     /**
@@ -108,5 +109,39 @@ class Category
     public function removeProduct(Product $product)
     {
         $this->products->removeElement($product);
+    }
+    /**
+     * @var string
+     */
+    private $urlSlug;
+
+
+    /**
+     * Set urlSlug
+     *
+     * @param string $urlSlug
+     *
+     * @return Category
+     */
+    public function setUrlSlug($urlSlug)
+    {
+        $this->urlSlug = $urlSlug;
+
+        return $this;
+    }
+
+    /**
+     * Get urlSlug
+     *
+     * @return string
+     */
+    public function getUrlSlug()
+    {
+        return $this->urlSlug;
+    }
+
+    public function generateUrlSlug()
+    {
+        $this->setUrlSlug(strtolower(str_replace(' ', '-', $this->getName())));
     }
 }

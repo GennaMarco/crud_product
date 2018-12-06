@@ -27,8 +27,8 @@
                         <h3 class="aside-title">Filter by Brand</h3>
                         <ul class="list-links">
                             {% for category in categories %}
-                                <li class="{% if app.request.get('category') in category.name %} active {% endif %}">
-                                    <a href="{{ url('app_product_index', {'category': category.name}) }}">
+                                <li class="{% if app.request.get('category_slug') in category.urlSlug %} active {% endif %}">
+                                    <a href="{{ url('app_product_index', {'category_slug': category.urlSlug}) }}">
                                         {{ category.name }}
                                     </a>
                                 </li>

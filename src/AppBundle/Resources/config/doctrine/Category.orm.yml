@@ -12,6 +12,10 @@ AppBundle\Entity\Category:
         name:
             type: string
             length: 255
+        urlSlug:
+            type: string
+            length: 255
+            unique: true
     manyToMany:
         products:
             targetEntity: Product
