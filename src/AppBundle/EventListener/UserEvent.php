@@ -10,30 +10,37 @@ namespace AppBundle\EventListener;
 
 use Doctrine\ORM\Event\LifecycleEventArgs;
 use AppBundle\Entity\User;
+use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\Filesystem\Filesystem;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class UserEvent
+class UserEvent extends Event
 {
-    private $container;
+    const REGISTRATION_SUCCESS = 'app.registration_success';
+    /**
+     * @var User
+     */
+    private $user;
 
-    public function __construct(ContainerInterface $container)
+    public function __construct(User $user)
     {
-        $this->container = $container;
+        $this->user = $user;
     }
 
-    public function preRemove(LifecycleEventArgs $args)
+    /**
+     * @return User
+     */
+    public function getUser()
     {
-        $entity = $args->getEntity();
-        // only act on some "User" entity
-        if ($entity instanceof User)
-        {
-            $imagePath = $entity->getImagePath();
-            if($imagePath != $this->container->getParameter('user_default_image'))
-            {
-                $fileSystem = new Filesystem();
-                $fileSystem->remove($this->container->getParameter('users_directory') . '/' . $imagePath);
-            }
-        }
+        return $this->user;
     }
+
+    /**
+     * @param User $user
+     */
+    public function setUser($user)
+    {
+        $this->user = $user;
+    }
+
 }

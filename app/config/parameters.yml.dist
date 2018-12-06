@@ -4,16 +4,16 @@
 parameters:
     database_host: 127.0.0.1
     database_port: ~
-    database_name: symfony
+    database_name: crud_product
     database_user: root
-    database_password: ~
+    database_password: root
     # You should uncomment this if you want to use pdo_sqlite
     #database_path: '%kernel.project_dir%/var/data/data.sqlite'
 
-    mailer_transport: smtp
+    mailer_transport: gmail
+    mailer_user: examplecrudproduct@gmail.com
     mailer_host: 127.0.0.1
-    mailer_user: ~
-    mailer_password: ~
+    mailer_password: esempio1
 
     users_dir_profile: img/users/
     user_default_img: default_image_profile_300x300.png

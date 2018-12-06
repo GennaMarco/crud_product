@@ -8,15 +8,18 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\AppEvents;
+use AppBundle\EventListener\UserEvent;
 use AppBundle\Form\UserType;
 use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends Controller
 {
-    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+    public function registerAction(Request $request, UserPasswordEncoderInterface $passwordEncoder, \Swift_Mailer $mailer, EventDispatcherInterface $eventDispatcher)
     {
         // 1) build the form
         $user = new User();
@@ -42,7 +45,10 @@ class RegistrationController extends Controller
             $entityManager->persist($user);
             $entityManager->flush();
 
-            // ... do any other work - like sending them an email, etc
+            $userEvent = new UserEvent($user);
+            $eventDispatcher->dispatch(UserEvent::REGISTRATION_SUCCESS, $userEvent);
+
+
             // maybe set a "flash" success message for the user
 
             return $this->redirectToRoute('security_login');

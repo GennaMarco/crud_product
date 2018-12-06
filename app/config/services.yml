@@ -37,7 +37,6 @@ services:
         arguments:
             $targetDirectory: '%users_directory%'
 
-    AppBundle\EventListener\UserEvent:
-        arguments: ["@service_container"]
+    AppBundle\EventListener\UserListener:
         tags:
             - { name: doctrine.event_listener, event: preRemove }
