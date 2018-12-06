@@ -5,8 +5,6 @@ namespace AppBundle\Form;
 use AppBundle\Entity\Category;
 use AppBundle\Entity\Product;
 
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\EntityRepository;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
@@ -17,20 +15,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ProductType extends AbstractType
 {
-    /**
-     * @var EntityManagerInterface
-     */
-//    private $entityManager;
-//
-//    public function __construct(EntityManagerInterface $entityManager)
-//    {
-//        $this->entityManager = $entityManager;
-//    }
-
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-//        $categories = $this->entityManager->getRepository(Category::class)->findAll();
-
         $builder
             ->add('name', TextType::class)
             ->add('price', NumberType::class, array('label' => 'Price(€)'))
