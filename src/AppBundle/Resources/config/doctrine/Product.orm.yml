@@ -19,11 +19,8 @@ AppBundle\Entity\Product:
             type: text
         stockQuantity:
             type: integer
-    manyToOne:
-        category:
+    manyToMany:
+        categories:
             targetEntity: Category
             inversedBy: products
-            joinColumn:
-                name: category_id
-                referencedColumnName: id
-                nullable: false
+            cascade: ['all']

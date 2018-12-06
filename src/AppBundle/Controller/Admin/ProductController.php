@@ -55,6 +55,7 @@ class ProductController extends Controller
     public function editAction(Request $request, $product_id)
     {
         //get repository for CRUD's operations on database
+        /** @var Product $product */
         $product = $this->getDoctrine()->getRepository(Product::class)->find($product_id);
         
         if (!$product)

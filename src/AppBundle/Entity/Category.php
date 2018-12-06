@@ -8,7 +8,9 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Product;
 use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 
 
 class Category
@@ -82,5 +84,29 @@ class Category
     public function setProducts($products)
     {
         $this->products = $products;
+    }
+
+    /**
+     * Add product
+     *
+     * @param Product $product
+     *
+     * @return Category
+     */
+    public function addProduct(Product $product)
+    {
+        $this->products[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product
+     *
+     * @param Product $product
+     */
+    public function removeProduct(Product $product)
+    {
+        $this->products->removeElement($product);
     }
 }

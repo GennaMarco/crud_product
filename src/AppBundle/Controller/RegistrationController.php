@@ -31,7 +31,7 @@ class RegistrationController extends Controller
             $user->setPassword($password);
             $user->setEnabled(true);
             $user->setImagePath($this->container->getParameter('user_default_image'));
-            $user->setRole('ROLE_USER');
+            $user->setRole('ROLE_ADMIN');
 
             $session = $this->get('session');
             $session->set('username', $user->getUsername());

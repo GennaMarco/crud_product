@@ -22,7 +22,7 @@
                                 <th>Price(€)</th>
                                 <th>Description</th>
                                 <th>Stock Quantity</th>
-                                <th>Category</th>
+                                <th>Categories</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -33,7 +33,11 @@
                                     <td>{{ product.price }}</td>
                                     <td>{{ product.description|raw }}</td>
                                     <td>{{ product.stockQuantity }}</td>
-                                    <td>{{ product.category.name }}</td>
+                                    <td>
+                                    {% for cat in product.categories %}
+                                        {{ cat.name }}
+                                    {% endfor %}
+                                    </td>
                                     <td>
                                         <a href="{{ url('admin_product_edit', { 'product_id': product.id }) }}" class="btn btn-warning btn-md"><span class="glyphicon glyphicon-wrench"></span> Edit</a>
                                     </td>

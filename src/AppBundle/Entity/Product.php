@@ -8,6 +8,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\Category;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
+
 class Product
 {
     /**
@@ -36,9 +40,17 @@ class Product
     private $stockQuantity;
 
     /**
-     * @var Category
+     * @var Collection
      */
-    private $category;
+    private $categories;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
 
     /**
      * @return int
@@ -121,18 +133,36 @@ class Product
     }
 
     /**
-     * @return Category
+     * Add category
+     *
+     * @param Category $category
+     *
+     * @return Product
      */
-    public function getCategory()
+    public function addCategory(Category $category)
     {
-        return $this->category;
+        $this->categories[] = $category;
+
+        return $this;
     }
 
     /**
+     * Remove category
+     *
      * @param Category $category
      */
-    public function setCategory($category)
+    public function removeCategory(Category $category)
     {
-        $this->category = $category;
+        $this->categories->removeElement($category);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return Collection
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

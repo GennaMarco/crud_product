@@ -12,8 +12,8 @@ AppBundle\Entity\Category:
         name:
             type: string
             length: 255
-    oneToMany:
+    manyToMany:
         products:
             targetEntity: Product
-            mappedBy: category
+            mappedBy: categories
             cascade: ['all']
